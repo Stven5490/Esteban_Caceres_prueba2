@@ -15,4 +15,15 @@ public class Cabagna extends Hospederia{
     public void setChimenea(boolean chimenea) {
         this.chimenea = chimenea;
     }
+
+    public int incrementarValorBase() {
+        int incrementar = 18;
+        int incrementarValorBase = 0;
+        if (capacidad > 5) {
+            incrementarValorBase = valorBaseNoche * (incrementar/100);
+        } else {
+            incrementarValorBase = 0;
+        }
+        return incrementarValorBase;
+    }
 }
