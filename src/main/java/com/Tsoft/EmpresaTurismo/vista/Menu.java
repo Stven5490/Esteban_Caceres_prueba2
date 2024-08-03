@@ -86,7 +86,7 @@ public class Menu {
             case 1:
                 System.out.println("Ingrese la cantidad de personas: ");
                 int cantidadPersonas = scanner.nextInt();
-                Carpa carpa = new Carpa(nombre, rut, valorBaseNoche, cantidadNoches, tipoTemporada, cantidadPersonas):
+                Carpa carpa = new Carpa(nombre, rut, valorBaseNoche, cantidadNoches, tipoTemporada, cantidadPersonas);
                 controlador.ingresarMedioAlojamiento(carpa);
                 break;
             case 2:
@@ -122,5 +122,47 @@ public class Menu {
                 break;
         }
     }
+    private static void datosClienteX(){
+        System.out.println("Ingrese el RUT del cliente: ");
+        String rut = scanner.nextLine();
+        controlador.datosClienteX(rut);
+    }
 
+    private static void cantidadMediosAlojamientoX() {
+        System.out.println("Seleccione el tipo de alojamiento:");
+        System.out.println("1. Carpa");
+        System.out.println("2. Cabaña");
+        System.out.println("3. Hotel");
+        int tipoAlojamiento = scanner.nextInt();
+        Class<?> tipoClase = null;
+        switch (tipoAlojamiento) {
+            case 1:
+                tipoClase = Carpa.class;
+                break;
+            case 2:
+                tipoClase = Cabagna.class;
+                break;
+            case 3:
+                tipoClase = Hotel.class;
+                break;
+            default:
+                System.err.println("Opcion de alojamiento no valida.");
+                break;
+        }
+        if (tipoClase != null) {
+            int cantidad = controlador.cantidadMediosAlojamientoX(tipoClase);
+            System.out.println("Cantidad de medios de alojamiento seleccionados: " +
+                    cantidad);
+        }
+    }
+    public static  void valorACancelarClienteX(){
+        System.out.println("Ingrese el RUT del cliente: ");
+        String rut = scanner.nextLine();
+        int valorACancelar = controlador.valorACancelarClienteX(rut);
+        System.out.println("Valor a cancelar por el cliente: " + valorACancelar);
+    }
+    public static void aplicarIncrementoValorBase() {
+        controlador.aplicarIncrementoValorBase(Cabagna.class);
+        System.out.println("Incremento de valor base aplicado.");
+    }
 }
