@@ -1,10 +1,10 @@
 package main.java.com.Tsoft.EmpresaTurismo.modelador;
 
 public class Hotel extends Hospederia{
-    protected static boolean conDesayuno;
+    private boolean conDesayuno;
 
-    public Hotel(int valorBaseNoche, int cantidad_de_noches, DatosCliente datosCliente, String[] tipoTemporadada, int capacidad, boolean esFumador, boolean conDesayuno) {
-        super(valorBaseNoche, cantidad_de_noches, datosCliente, tipoTemporadada, capacidad, esFumador);
+    public Hotel(String nombreCliente, String rutCliente, int valorBaseNoche, int cantidadNoches, String tipoTemporada, int capacidad, boolean esFumador, boolean conDesayuno) {
+        super(nombreCliente, rutCliente, valorBaseNoche, cantidadNoches, tipoTemporada, capacidad, esFumador);
         this.conDesayuno = conDesayuno;
     }
 
@@ -16,14 +16,16 @@ public class Hotel extends Hospederia{
         this.conDesayuno = conDesayuno;
     }
 
-    public static int adicional() {
-        int adicional = 0;
+    @Override
+    public int adicional(){
         int add = 30;
-        if (esFumador == true && conDesayuno == true) {
-            adicional = subTotal() * (add/100);
-        } else {
-            adicional = 0;
-        }
-        return adicional;
+        return (isEsFumador() && conDesayuno) ? add * subTotal() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel: " +
+                super.toString() +
+                "Con desayuno: " + conDesayuno;
     }
 }

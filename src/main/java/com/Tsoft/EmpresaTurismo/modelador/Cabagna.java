@@ -1,10 +1,10 @@
 package main.java.com.Tsoft.EmpresaTurismo.modelador;
 
 public class Cabagna extends Hospederia{
-    protected boolean chimenea;
+    private boolean chimenea;
 
-    public Cabagna(int valorBaseNoche, int cantidad_de_noches, DatosCliente datosCliente, String[] tipoTemporadada, int capacidad, boolean esFumador, boolean chimenea) {
-        super(valorBaseNoche, cantidad_de_noches, datosCliente, tipoTemporadada, capacidad, esFumador);
+    public Cabagna(String nombreCliente, String rutCliente, int valorBaseNoche, int cantidadNoches, String tipoTemporada, int capacidad, boolean esFumador, boolean chimenea) {
+        super(nombreCliente, rutCliente, valorBaseNoche, cantidadNoches, tipoTemporada, capacidad, esFumador);
         this.chimenea = chimenea;
     }
 
@@ -16,14 +16,17 @@ public class Cabagna extends Hospederia{
         this.chimenea = chimenea;
     }
 
-    public int incrementarValorBase() {
-        int incrementar = 18;
-        int incrementarValorBase = 0;
-        if (capacidad > 5) {
-            incrementarValorBase = valorBaseNoche * (incrementar/100);
-        } else {
-            incrementarValorBase = 0;
+    public void incrementaValorBase() {
+        double add = 18;
+        if (getCapacidad() > 5) {
+            valorBaseNoche *= add;
         }
-        return incrementarValorBase;
+    }
+
+    @Override
+    public String toString() {
+        return "Cabaña:" +
+                super.toString() +
+                "Chimenea: " + chimenea;
     }
 }

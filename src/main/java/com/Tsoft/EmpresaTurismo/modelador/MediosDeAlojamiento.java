@@ -1,21 +1,18 @@
 package main.java.com.Tsoft.EmpresaTurismo.modelador;
 
-import java.util.Arrays;
+public abstract class MediosDeAlojamiento extends DatosCliente {
+    protected int valorBaseNoche;
+    protected int cantidadNoches;
+    protected String tipoTemporada;
 
-public abstract class MediosDeAlojamiento {
-    protected static int valorBaseNoche;
-    protected static int cantidad_de_noches;
-    protected DatosCliente datosCliente;
-    protected String tipoTemporadada; //{"alta", "media", "baja"};
-
-    public MediosDeAlojamiento(int valorBaseNoche, int cantidad_de_noches, DatosCliente datosCliente, String[] tipoTemporadada) {
+    public MediosDeAlojamiento(String nombreCliente, String rutCliente, int valorBaseNoche, int cantidadNoches, String tipoTemporada) {
+        super(nombreCliente, rutCliente);
         this.valorBaseNoche = valorBaseNoche;
-        this.cantidad_de_noches = cantidad_de_noches;
-        this.datosCliente = datosCliente;
-        this.tipoTemporadada = Arrays.toString(tipoTemporadada);
+        this.cantidadNoches = cantidadNoches;
+        this.tipoTemporada = tipoTemporada;
     }
 
-    public static int getValorBaseNoche() {
+    public int getValorBaseNoche() {
         return valorBaseNoche;
     }
 
@@ -23,59 +20,68 @@ public abstract class MediosDeAlojamiento {
         this.valorBaseNoche = valorBaseNoche;
     }
 
-    public static int getCantidad_de_noches() {
-        return cantidad_de_noches;
+    public int getCantidadNoches() {
+        return cantidadNoches;
     }
 
-    public void setCantidad_de_noches(int cantidad_de_noches) {
-        this.cantidad_de_noches = cantidad_de_noches;
+    public void setCantidadNoches(int cantidadNoches) {
+        this.cantidadNoches = cantidadNoches;
     }
 
-    public DatosCliente getDatosCliente() {
-        return datosCliente;
+    public String getTipoTemporada() {
+        return tipoTemporada;
     }
 
-    public void setDatosCliente(DatosCliente datosCliente) {
-        this.datosCliente = datosCliente;
+    public void setTipoTemporada(String tipoTemporada) {
+        this.tipoTemporada = tipoTemporada;
     }
 
-    public String[] getTipoTemporadada() {
-        return new String[]{tipoTemporadada};
-    }
-
-    public void setTipoTemporadada(String[] tipoTemporadada) {
-        this.tipoTemporadada = Arrays.toString(tipoTemporadada);
-    }
-
-    public static int subTotal() {
+    public int subTotal() {
         int subtotal = 0;
-        if (getCantidad_de_noches() == 0) {
-            subtotal = 0;
+        int qNoches = getCantidadNoches();
+        int vBase = getValorBaseNoche();
+        if (getCantidadNoches() <= 0) {
+            return subtotal;
         } else {
-            subtotal = getCantidad_de_noches() * getValorBaseNoche();
+            subtotal = qNoches * vBase;
         }
         return subtotal;
     }
 
     public int bonoDescuento() {
-        int bonoDescuento = 0;
+        String tipoTemporada = getTipoTemporada();
         int desctoBaja = 25;
         double desctoMedia = 12.5;
-        if (tipoTemporadada == "baja") {
-            bonoDescuento = subTotal() * desctoBaja;
-        } else if (tipoTemporadada == "media") {
-            bonoDescuento = (int) (subTotal() * desctoMedia);
-        } else {
-            bonoDescuento = 0;
+        int subtotal = subTotal();
+        int descto = 0;
+        if (tipoTemporada.equalsIgnoreCase("baja")) {
+            descto = subtotal * (desctoBaja / 100);
+            return descto;
+        } else if (tipoTemporada.equalsIgnoreCase("media")) {
+            descto = (int) (subtotal * (desctoMedia / 100));
+            return descto;
         }
-        return bonoDescuento;
+        return bonoDescuento();
     }
 
     public int valorACancelar() {
         int subTotal = subTotal();
-        int descto = bonoDescuento();
-        int adicional = Hotel.adicional();
-        int total = subTotal - descto + adicional;
-        return total;
+        int des = bonoDescuento();
+        int add = adicional();
+        int valorACancelar = (subTotal + add) - des;
+        return valorACancelar;
     }
+    public int adicional() {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return
+                super.toString() +
+                        "Valor Base Noche: " + valorBaseNoche +
+                        "Cantidad de Noches: " + cantidadNoches +
+                        "Tipo de temporada: " + tipoTemporada;
+    }
+
 }

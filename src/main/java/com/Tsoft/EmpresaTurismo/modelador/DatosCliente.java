@@ -1,8 +1,13 @@
 package main.java.com.Tsoft.EmpresaTurismo.modelador;
 
 public class DatosCliente {
-    protected String nombreCliente;
-    protected String rutCliente;
+   private String nombreCliente;
+   private String rutCliente;
+
+    public DatosCliente(String nombreCliente, String rutCliente) {
+        this.nombreCliente = nombreCliente;
+        this.rutCliente = rutCliente;
+    }
 
     public String getNombreCliente() {
         return nombreCliente;
@@ -20,18 +25,10 @@ public class DatosCliente {
         this.rutCliente = rutCliente;
     }
 
-    public DatosCliente(String nombreCliente, String rutCliente) {
-        this.nombreCliente = nombreCliente;
-        this.rutCliente = rutCliente;
-    }
-
     @Override
-    public String toString() {
-        String nombre = getNombreCliente();
-        String rut = getRutCliente();
-
-        return "Informacion del cliente: " +
-                "Nombre: " + nombre +
-                "Rut: " + rut;
+    public String toString(){
+        return "Datos del cliente: " +
+                "Nombre: " + nombreCliente +
+                "Rut: " + rutCliente;
     }
 }

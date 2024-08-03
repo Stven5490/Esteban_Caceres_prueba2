@@ -1,10 +1,10 @@
 package main.java.com.Tsoft.EmpresaTurismo.modelador;
 
 public class Carpa extends MediosDeAlojamiento{
-    protected int cantidadPersonas;
+    private int cantidadPersonas;
 
-    public Carpa(int valorBaseNoche, int cantidad_de_noches, DatosCliente datosCliente, String[] tipoTemporadada, int cantidadPersonas) {
-        super(valorBaseNoche, cantidad_de_noches, datosCliente, tipoTemporadada);
+    public Carpa(String nombreCliente, String rutCliente, int valorBaseNoche, int cantidadNoches, String tipoTemporada, int cantidadPersonas) {
+        super(nombreCliente, rutCliente, valorBaseNoche, cantidadNoches, tipoTemporada);
         this.cantidadPersonas = cantidadPersonas;
     }
 
@@ -14,5 +14,12 @@ public class Carpa extends MediosDeAlojamiento{
 
     public void setCantidadPersonas(int cantidadPersonas) {
         this.cantidadPersonas = cantidadPersonas;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Carpa: " + super.toString() +
+                        "Cantidad de personas: " + cantidadPersonas;
     }
 }
