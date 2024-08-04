@@ -1,8 +1,6 @@
 package main.java.com.Tsoft.EmpresaTurismo.controlador;
 
-import main.java.com.Tsoft.EmpresaTurismo.modelador.Cabagna;
-import main.java.com.Tsoft.EmpresaTurismo.modelador.DatosCliente;
-import main.java.com.Tsoft.EmpresaTurismo.modelador.MediosDeAlojamiento;
+import main.java.com.Tsoft.EmpresaTurismo.modelador.*;
 
 import java.util.HashMap;
 import java.util.Map;
