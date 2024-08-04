@@ -1,9 +1,7 @@
 package main.java.com.Tsoft.EmpresaTurismo.vista;
 
 import main.java.com.Tsoft.EmpresaTurismo.controlador.ControladorAlojamientos;
-import main.java.com.Tsoft.EmpresaTurismo.modelador.Cabagna;
-import main.java.com.Tsoft.EmpresaTurismo.modelador.Carpa;
-import main.java.com.Tsoft.EmpresaTurismo.modelador.Hotel;
+import main.java.com.Tsoft.EmpresaTurismo.modelador.*;
 
 import java.util.Scanner;
 
